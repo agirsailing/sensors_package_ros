@@ -25,8 +25,9 @@ setup(
     entry_points={
         'console_scripts': [
         	'talker_gps = sensors_package.gps_node:main',
-		'listener_gps = sensors_package.gps_listener:main',
-                'talker_ultrasonic = sensors_package.ultrasonic_node:main'
+		    'listener_gps = sensors_package.gps_listener:main',
+            'talker_ultrasonic = sensors_package.ultrasonic_node:main',
+            'talker_imu = sensors_package.imu_node:main'
 	],
     },
 )
