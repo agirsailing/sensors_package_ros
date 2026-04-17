@@ -19,6 +19,7 @@ REG_CNTL2    = 0x0B
 
 def setup_compass() -> SMBus:
     bus = SMBus(1)
+    bus.write_byte(0x70, 0x01)
     bus.write_byte_data(MAG_I2C_ADDR, REG_CNTL2, 0x01)
     time.sleep(0.1)
     bus.write_byte_data(MAG_I2C_ADDR, REG_CNTL1, 0x01)
@@ -26,6 +27,7 @@ def setup_compass() -> SMBus:
     return bus
 
 def read_mag(bus: SMBus) -> tuple[int, int, int]:
+    bus.write_byte(0x70, 0x01)
     bus.write_byte_data(MAG_I2C_ADDR, REG_CNTL1, 0x01)
     time.sleep(0.02)
     data = bus.read_i2c_block_data(MAG_I2C_ADDR, REG_DATA_X_L, 6)
@@ -47,7 +49,7 @@ class GPSPublisher(Node):
         super().__init__('gps_node')
 
         self.publisher_ = self.create_publisher(String, 'gps', 10)
-        self.stream = Serial('/dev/ttyUSB1', 230400, timeout=0.1)
+        self.stream = Serial('/dev/ttyUSB0', 230400, timeout=0.1)
         self.ubr    = UBXReader(self.stream)
         self.mag_bus = setup_compass()
 
