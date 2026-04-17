@@ -35,11 +35,11 @@ class DFRobot_A02_Distance:
   distance_min = 0
   range_max = 4500
 
-  def __init__(self):
+  def __init__(self, port="/dev/ttyUSB0", baudrate=9600, timeout=1):
     '''
       @brief    Sensor initialization.
     '''
-    self._ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=1)
+    self._ser = serial.Serial(port, baudrate, timeout=timeout)
     if self._ser.isOpen() != True:
       self.last_operate_status = self.STA_ERR_SERIAL
 

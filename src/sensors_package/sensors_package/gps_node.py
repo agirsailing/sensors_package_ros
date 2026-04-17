@@ -4,8 +4,10 @@ import os
 import csv
 import rclpy
 from datetime import datetime, timezone
+
 from rclpy.node import Node
 from std_msgs.msg import String
+
 from serial import Serial
 from pyubx2 import UBXReader
 from smbus2 import SMBus
@@ -102,9 +104,9 @@ class GPSPublisher(Node):
             hdg_mag = float('nan')
 
         if speed_ms > 0.5:
-            hdg_deg = parsed_data.headMot / 100000.0  # GPS heading
+            hdg_deg = parsed_data.headMot/100000.0     # GPS heading
         else:
-            hdg_deg = hdg_mag  # compass heading
+            hdg_deg = hdg_mag                          # compass heading
 
         try:
             utc = datetime(

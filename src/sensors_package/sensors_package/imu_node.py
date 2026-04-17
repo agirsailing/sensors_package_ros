@@ -4,8 +4,10 @@ import os
 import csv
 import rclpy
 from datetime import datetime, timezone
+
 from rclpy.node import Node
 from std_msgs.msg import String
+
 from smbus2 import SMBus
 
 ACCEL_GYRO   = 0x6A
@@ -23,13 +25,13 @@ def s16(low, high):
 
 
 def setup_imu(bus: SMBus) -> None:
-    bus.write_byte_data(ACCEL_GYRO, 0x22, 0x01)   # accel/gyro SW reset
+    bus.write_byte_data(ACCEL_GYRO, 0x22, 0x01)    # accel/gyro SW reset
     time.sleep(0.5)
     bus.write_byte_data(MAG, 0x21, 0x0C)           # mag reboot + reset
     time.sleep(0.1)
     bus.write_byte_data(MAG, 0x21, 0x00)           # clear reset
     time.sleep(0.1)
-    bus.write_byte_data(ACCEL_GYRO, 0x20, 0x68)   # accel 119Hz ±16g
+    bus.write_byte_data(ACCEL_GYRO, 0x20, 0x68)    # accel 119Hz ±16g
     bus.write_byte_data(MAG, 0x20, 0x70)           # XY high perf 40Hz
     bus.write_byte_data(MAG, 0x23, 0x0C)           # Z high perf
     bus.write_byte_data(MAG, 0x21, 0x00)           # ±4 gauss
@@ -144,7 +146,7 @@ class IMUNode(Node):
                 round(roll,  3),
                 round(pitch, 3),
                 round(yaw,   3),
-                float('nan'),   # heading_mag_deg — add if you want raw mag heading
+                float('nan'),   # heading_mag_deg - raw mag heading
             ])
 
     def destroy_node(self):

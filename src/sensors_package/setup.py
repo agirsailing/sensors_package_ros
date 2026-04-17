@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+from glob import glob
+import os
 
 package_name = 'sensors_package'
 
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), ['launch/sensors_launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -24,10 +27,11 @@ setup(
     },
     entry_points={
         'console_scripts': [
-        	'talker_gps = sensors_package.gps_node:main',
-		    'listener_gps = sensors_package.gps_listener:main',
+            'talker_gps = sensors_package.gps_node:main',
+            'listener_gps = sensors_package.gps_listener:main',
             'talker_ultrasonic = sensors_package.ultrasonic_node:main',
+            'talker_filter_ultrasonic = sensors_package.ultrasonic_filter_node:main',
             'talker_imu = sensors_package.imu_node:main'
-	],
+        ],
     },
 )
