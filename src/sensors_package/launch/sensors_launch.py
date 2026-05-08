@@ -28,4 +28,9 @@ def generate_launch_description():
             executable='talker_filter_ultrasonic',
             name='ultrasonic_filter_node',
         ),
+        Node(
+            package='sensors_package',
+            executable='talker_gps',
+            name='gps_node',
+        )
     ])

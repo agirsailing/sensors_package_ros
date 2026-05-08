@@ -49,7 +49,7 @@ class GPSPublisher(Node):
         super().__init__('gps_node')
 
         self.publisher_ = self.create_publisher(String, 'gps', 10)
-        self.stream = Serial('/dev/ttyUSB0', 230400, timeout=0.1)
+        self.stream = Serial('/dev/ttyUSB2', 230400, timeout=0.1)
         self.ubr    = UBXReader(self.stream)
         self.mag_bus = setup_compass()
 
