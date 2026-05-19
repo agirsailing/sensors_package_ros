@@ -27,7 +27,7 @@ ACCEL_SENS = 0.122e-3 * 9.80665   # m/s² per raw LSB
 GYRO_SENS  = 17.50e-3 * (math.pi / 180.0)  # rad/s per raw LSB
 
 # Calibration settings
-CALIB_SAMPLES = 200   # ~2 s at 100 Hz — keep sensor perfectly still during this
+CALIB_SAMPLES = 200   # ~2 s at 100 Hz 
 
 
 def _signed16(high, low):

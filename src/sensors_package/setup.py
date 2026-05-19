@@ -31,7 +31,8 @@ setup(
             'listener_gps = sensors_package.gps_listener:main',
             'talker_ultrasonic = sensors_package.ultrasonic_node:main',
             'talker_filter_ultrasonic = sensors_package.ultrasonic_filter_node:main',
-            'talker_imu = sensors_package.imu_node:main'
+            'talker_imu = sensors_package.imu_node:main',
+            'talker_bat = sensors_package.battery_node:main'
         ],
     },
 )
