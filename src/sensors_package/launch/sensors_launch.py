@@ -32,5 +32,10 @@ def generate_launch_description():
             package='sensors_package',
             executable='talker_gps',
             name='gps_node',
+        ),
+        Node(
+            package='sensors_package',
+            executable='talker_bat',
+            name='battery_node',
         )
     ])
